@@ -3,175 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KaradzicSMP</title>
+    <title>KaradžićSMP</title>
     <style>
-        :root {
-            --primary: #5cb85c;
-            --dark: #1a1a1a;
-            --accent: #4caf50;
-            --bg: #0f0f0f;
-            --card: #1e1e1e;
-            --discord: #5865F2;
-            --tiktok: #ff0050;
+        /* ИСПРАВЛЕНИЕ СМЕЩЕНИЯ */
+        html {
+            scrollbar-gutter: stable;
         }
+
+        :root {
+            --bg-light: #f5f5f7;
+            --bg-white: #ffffff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --accent-blue: #0066cc;
+            --ai-gradient: linear-gradient(70deg, #fd9700 9%, #ff4400 28%, #ff2469 49%, #c65cff 78%, #0092ff 100%);
+            --font-main: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", sans-serif;
+            --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.25, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background-color: var(--bg);
-            color: #eee;
-            margin: 0;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            letter-spacing: -0.022em;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 100px;
+            /* Принудительный скролл для стабильности ширины */
+            overflow-y: scroll;
+        }
+
+        header {
+            padding: 80px 20px 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .text-ai-gradient {
+            background: var(--ai-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .apple-card {
+            background: var(--bg-white);
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .apple-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .tabs-nav {
             display: flex;
             justify-content: center;
-            padding: 20px;
-        }
-
-        .card {
-            background: var(--card);
-            max-width: 850px;
-            width: 100%;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border: 1px solid #333;
-        }
-
-        .header {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://pabloadv.github.io/assets/img/minecraft_bg.jpg');
-            background-size: cover;
-            background-position: center;
-            padding: 60px 20px;
-            text-align: center;
-            border-bottom: 4px solid var(--primary);
-        }
-
-        h1 { margin: 0; font-size: 3em; color: var(--primary); text-transform: uppercase; letter-spacing: 4px; }
-
-        .content { padding: 30px; }
-
-        .tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
+            gap: 12px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
         }
 
         .tab-btn {
-            background: #2a2a2a;
-            color: #ccc;
+            background: rgba(0,0,0,0.05);
             border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 980px;
+            font-size: 14px;
             cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-            font-size: 0.9em;
+            transition: var(--transition-smooth);
+            color: var(--text-primary);
         }
 
-        .tab-btn.active { background: var(--primary); color: white; }
+        .tab-btn.active {
+            background: var(--text-primary);
+            color: white;
+        }
 
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-
-        .ip-section, .wallet-section {
-            background: #111;
-            padding: 15px;
-            border-radius: 12px;
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 22px;
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 25px;
-            border: 1px dashed #444;
+            margin-bottom: 40px;
         }
 
-        .ip-text, .wallet-text { font-family: 'Courier New', monospace; color: #a2ffaf; font-size: 1.1em; font-weight: bold; overflow-wrap: anywhere; margin-right: 10px; }
-        
-        .copy-btn {
-            background: var(--primary);
-            color: white;
+        .apple-button {
+            background: var(--text-primary);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 980px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: var(--transition-smooth);
             border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
             cursor: pointer;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .download-box {
-            text-align: center;
-            padding: 25px;
-            background: rgba(92, 184, 92, 0.05);
-            border-radius: 15px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(92, 184, 92, 0.2);
-        }
-
-        .btn-download {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 15px 30px;
             text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 1.2em;
+            display: inline-block;
         }
 
-        .step { margin-bottom: 30px; }
-        .step h4 { color: var(--primary); margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
-        .step p { font-size: 0.95em; line-height: 1.6; color: #ccc; }
-        
-        .folder-list {
-            background: #252525;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-            border: 1px solid #444;
-        }
-        .folder-item { color: #5eff5e; font-family: monospace; font-weight: bold; }
-
-        .os-warning {
-            background: #332b00;
-            border-left: 4px solid #ffcc00;
-            padding: 15px;
-            margin: 15px 0;
-            font-size: 0.9em;
+        .apple-button:hover {
+            opacity: 0.8;
+            transform: scale(1.03);
         }
 
-        .mod-list {
+        .mods-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
         }
 
-        .mod-item {
-            background: #252525;
-            padding: 12px 15px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #333;
+        .mod-card {
+            background: var(--bg-white);
+            padding: 25px;
+            border-radius: 22px;
+            text-align: center;
             cursor: pointer;
-            transition: 0.2s;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .mod-item:hover { background: #333; border-color: var(--primary); }
-
-        .rule-item {
-            margin-bottom: 15px;
-            padding: 15px;
-            background: #252525;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary);
+        .mod-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-color: var(--accent-blue);
         }
 
-        /* МОДАЛЬНОЕ ОКНО */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(15px);
             display: none;
             justify-content: center;
             align-items: center;
@@ -179,189 +162,199 @@
         }
 
         .modal {
-            background: #222;
-            padding: 30px;
-            border-radius: 15px;
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: 30px;
             max-width: 500px;
             width: 90%;
-            border: 1px solid var(--primary);
-            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            text-align: center;
         }
 
-        .close-modal {
-            position: absolute;
-            top: 10px; right: 15px;
-            font-size: 25px; color: #888; cursor: pointer;
+        .contact-shelf {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
         }
 
-        footer { text-align: center; padding: 30px; color: #555; font-size: 0.9em; border-top: 1px solid #222; }
+        .contact-link {
+            padding: 24px;
+            border-radius: 22px;
+            background: var(--bg-white);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .contact-link svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .contact-link:hover {
+            background: var(--bg-light);
+            transform: scale(1.02);
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer { text-align: center; padding: 60px 0; color: var(--text-secondary); font-size: 14px; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div class="header">
-        <h1>KaradzicSMP</h1>
-        <p>NeoForge 1.21.1</p>
+<header>
+    <h1 class="text-ai-gradient">KaradžićSMP</h1>
+</header>
+
+<div class="container">
+    <div class="glass-panel">
+        <div>
+            <span style="color: var(--text-secondary); font-size: 13px; text-transform: uppercase;">Адрес подключения</span>
+            <div id="ip" style="font-size: 20px; font-weight: 600; margin-top: 4px;">5.9.235.227:25586</div>
+        </div>
+        <button class="apple-button" style="padding: 10px 20px;" onclick="copyText('ip', this)">Копировать</button>
     </div>
 
-    <div class="content">
-        <!-- IP Address Section -->
-        <div class="ip-section">
-            <div>
-                <div style="font-size: 0.8em; color: #888;">IP АДРЕС СЕРВЕРА</div>
-                <div class="ip-text" id="ip">5.9.235.227:25586</div>
-            </div>
-            <button class="copy-btn" onclick="copyText('ip', this)">Копировать</button>
+    <div class="tabs-nav">
+        <button class="tab-btn active" onclick="openTab('guide')">Инструкция</button>
+        <button class="tab-btn" onclick="openTab('mods')">Моды</button>
+        <button class="tab-btn" onclick="openTab('rules')">Правила</button>
+        <button class="tab-btn" onclick="openTab('contact')">Связь</button>
+        <button class="tab-btn" onclick="openTab('donate')">Пожертвование</button>
+    </div>
+
+    <!-- ТАБ: ИНСТРУКЦИЯ -->
+    <div id="guide" class="tab-content active">
+        <div class="apple-card" style="text-align: center; background: linear-gradient(to bottom, #fff, #f9f9f9);">
+            <h2 style="font-size: 32px; margin-bottom: 20px;">Готов к игре?</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 30px;">Скачайте полный архив настроенных файлов сервера.</p>
+            <a href="https://github.com/expr-rr/server-web/releases/download/1/KaradzicSMP.zip" class="apple-button">Скачать KaradzicSMP.zip</a>
         </div>
 
-        <!-- Navigation Tabs -->
-        <div class="tabs">
-            <button class="tab-btn active" onclick="openTab('guide')">Инструкция</button>
-            <button class="tab-btn" onclick="openTab('mods')">Список модов</button>
-            <button class="tab-btn" onclick="openTab('rules')">Правила</button>
-            <button class="tab-btn" onclick="openTab('contact')">Связь</button>
-            <button class="tab-btn" onclick="openTab('donate')">Пожертвование</button>
-        </div>
-
-        <!-- ВКЛАДКА: ИНСТРУКЦИЯ -->
-        <div id="guide" class="tab-content active">
-            <div class="download-box">
-                <a href="https://github.com/expr-rr/server-web/releases/download/1/KaradzicSMP.zip" class="btn-download" download>Скачать KaradzicSMP.zip</a>
-            </div>
-
-            <div class="step">
-                <h4>Шаг 1: Подготовка версии</h4>
-                <p>В вашем лаунчере создайте и установите профиль с версией <strong>NeoForge 1.21.1</strong>.</p>
-            </div>
-
-            <div class="step">
-                <h4>Шаг 2: Распаковка</h4>
-                <p>Скачайте и распакуйте архив <code>KaradzicSMP.zip</code> в любую папку на вашем компьютере.</p>
-                <div class="os-warning">
-                    <strong>Внимание для Windows:</strong> Игнорируйте папку <code>__MACOSX</code> внутри архива. Это системные файлы Mac, которые не нужны для работы игры.
-                </div>
-            </div>
-
-            <div class="step">
-                <h4>Шаг 3: Перенос файлов</h4>
-                <p>В лаунчере нажмите на кнопку <strong>"Открыть папку"</strong> профиля. Перенесите туда следующие папки из архива:</p>
-                <div class="folder-list">
-                    1. <span class="folder-item">mods</span> — файлы модов.<br>
-                    2. <span class="folder-item">config</span> — настройки.<br>
-                    3. <span class="folder-item">kubejs</span> — скрипты.
-                </div>
-                <p>При появлении вопроса о замене файлов выберите <strong>"Да (Заменить)"</strong>.</p>
-            </div>
-
-            <div class="step">
-                <h4>Шаг 4: Готово!</h4>
-                <p>Запускайте игру и подключайтесь к серверу. Для регистрации используйте команду:</p>
-                <code style="background: #000; padding: 5px 10px; border-radius: 5px; color: var(--primary);">/register [пароль] [пароль]</code>
-            </div>
-        </div>
-
-        <!-- ВКЛАДКА: МОДЫ -->
-        <div id="mods" class="tab-content">
-            <h3 style="margin-top:0">Состав сборки</h3>
-            <div class="mod-list" id="modGrid"></div>
-        </div>
-
-        <!-- ВКЛАДКА: ПРАВИЛА -->
-        <div id="rules" class="tab-content">
-            <h3 style="margin-top:0">Правила сервера</h3>
-            
-            <div class="rule-item">
-                <strong>1. Уважение:</strong> Будьте вежливы с другими игроками. Оскорбления и токсичное поведение запрещены.
-            </div>
-            
-            <div class="rule-item">
-                <strong>2. Честная игра:</strong> Использование любых читов (X-Ray, Fly, чит-клиенты) карается вечным баном.
-            </div>
-            
-            <div class="rule-item">
-                <strong>3. Стабильность:</strong> Запрещено создание механизмов (лаг-машин), намеренно нагружающих сервер.
-            </div>
-
-            <div style="background: rgba(92, 184, 92, 0.1); padding: 20px; border-radius: 12px; margin-top: 25px; border: 1px solid rgba(92, 184, 92, 0.3);">
-                <h4 style="margin-top:0; color: var(--primary);">Наше сообщество</h4>
-                <p style="margin-bottom:0; font-size: 0.95em; line-height: 1.6;">
-                    KaradzicSMP — это место для совместной игры. Объединяйтесь в команды, стройте крутые проекты и наслаждайтесь миром Minecraft!
+        <div class="apple-card">
+            <h3 style="margin-bottom: 20px;">Как установить</h3>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <p>1. Установите <strong>NeoForge 1.21.1</strong> в своем лаунчере.</p>
+                <p>2. Распакуйте архив. Перенесите папки <span style="color: var(--accent-blue)">mods</span>, <span style="color: var(--accent-blue)">config</span> и <span style="color: var(--accent-blue)">kubejs</span> в папку версии игры (кнопка «Открыть папку» в лаунчере).</p>
+                <p style="background: var(--bg-light); padding: 15px; border-radius: 12px; font-size: 14px;">
+                    <strong>Для Windows:</strong> Не копируйте папку <code>__MACOSX</code>.
                 </p>
-            </div>
-        </div>
-
-        <!-- ВКЛАДКА: СВЯЗЬ -->
-        <div id="contact" class="tab-content">
-            <h3 style="margin-top:0">Наши соцсети</h3>
-            <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
-                <a href="https://t.me/lazardraganovic" target="_blank" style="background:#0088cc; padding:15px; border-radius:10px; text-decoration:none; color:white; font-weight:bold; text-align:center;">Telegram</a>
-                <a href="https://discord.gg/JYhARU63Sc" target="_blank" style="background:#5865F2; padding:15px; border-radius:10px; text-decoration:none; color:white; font-weight:bold; text-align:center;">Discord</a>
-                <a href="https://www.tiktok.com/@neverstressadhh" target="_blank" style="background:#ff0050; padding:15px; border-radius:10px; text-decoration:none; color:white; font-weight:bold; text-align:center;">TikTok</a>
-            </div>
-        </div>
-
-        <!-- ВКЛАДКА: ПОЖЕРТВОВАНИЕ -->
-        <div id="donate" class="tab-content">
-            <h3 style="margin-top:0">Поддержать проект (TON)</h3>
-            <div class="wallet-section">
-                <div class="wallet-text" id="tonWallet" style="font-size: 0.7em;">UQBL32El3rRWTgje2exLXLDveQxVBA9aBvxF4rzR3pXVZ9dR</div>
-                <button class="copy-btn" onclick="copyText('tonWallet', this)">Копировать</button>
+                <p>3. Заходите на сервер! Используйте <code>/register [пароль]</code> для входа.</p>
             </div>
         </div>
     </div>
 
-    <footer>KaradzicSMP &copy; 2026</footer>
+    <!-- ТАБ: МОДЫ -->
+    <div id="mods" class="tab-content">
+        <div class="mods-grid" id="modGrid"></div>
+    </div>
+
+    <!-- ТАБ: ПРАВИЛА -->
+    <div id="rules" class="tab-content">
+        <div class="apple-card">
+            <h3 style="margin-bottom: 20px;">Правила сервера</h3>
+            <p style="margin-bottom: 15px; padding: 15px; border-bottom: 1px solid var(--bg-light);"><strong>Уважение:</strong> Будьте вежливы. Оскорбления запрещены.</p>
+            <p style="margin-bottom: 15px; padding: 15px; border-bottom: 1px solid var(--bg-light);"><strong>Честная игра:</strong> Использование читов карается вечным баном.</p>
+            <p style="padding: 15px;"><strong>Технологии:</strong> Не создавайте механизмы, намеренно лагающие сервер.</p>
+        </div>
+    </div>
+
+    <!-- ТАБ: СВЯЗЬ -->
+    <div id="contact" class="tab-content">
+        <div class="contact-shelf">
+            <a href="https://t.me/lazardraganovic" target="_blank" class="contact-link">
+                <svg viewBox="0 0 24 24" fill="#0088cc"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.78-.88-.63-1.38-1.02-2.23-1.59-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.48-.51.35-.98.53-1.4.52-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.39-.89.03-.25.38-.51 1.07-.78 4.2-1.82 7.01-3.02 8.42-3.58 4.02-1.61 4.86-1.89 5.4-1.9.12 0 .38.03.55.17.14.14.18.33.2.46.02.1.03.22.01.35z"/></svg>
+                Telegram
+            </a>
+            <a href="https://discord.gg/JYhARU63Sc" target="_blank" class="contact-link">
+                <svg viewBox="0 0 24 24" fill="#5865F2"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.666 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.077 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.419-2.157 2.419z"/></svg>
+                Discord
+            </a>
+            <a href="https://www.tiktok.com/@neverstressadhh" target="_blank" class="contact-link">
+                <svg viewBox="0 0 24 24" fill="#000000"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-.99 0-1.49.18-1.76.91-3.43 2.1-4.7 1.27-1.38 3.07-2.23 4.95-2.33 1.08-.07 2.16.1 3.16.52.02 1.43 0 2.87.01 4.3-.57-.34-1.22-.52-1.89-.52-1.44.02-2.83.84-3.52 2.13-.36.63-.5 1.37-.41 2.1.12 1.21.94 2.31 2.05 2.78 1.03.46 2.27.35 3.2-.29.83-.59 1.3-1.58 1.34-2.61.03-3.61.02-7.22.02-10.82z"/></svg>
+                TikTok
+            </a>
+        </div>
+    </div>
+
+    <!-- ТАБ: ПОЖЕРТВОВАНИЕ -->
+    <div id="donate" class="tab-content">
+        <div class="apple-card" style="text-align: center;">
+            <h3 style="margin-bottom: 20px;">Пожертвование</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Отправить TON на развитие хостинга:</p>
+            <div id="wallet" style="background: var(--bg-light); padding: 15px; border-radius: 14px; font-family: monospace; font-size: 13px; word-break: break-all; margin-bottom: 20px;">
+                UQBL32El3rRWTgje2exLXLDveQxVBA9aBvxF4rzR3pXVZ9dR
+            </div>
+            <button class="apple-button" onclick="copyText('wallet', this)">Скопировать адрес</button>
+        </div>
+    </div>
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО МОДОВ -->
+<footer>
+    &copy; 2026 KaradžićSMP.
+</footer>
+
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
     <div class="modal" onclick="event.stopPropagation()">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <h2 id="mTitle" style="color: var(--primary); margin-top:0;"></h2>
-        <p id="mDesc" style="line-height:1.6; color:#ccc; margin:20px 0;"></p>
-        <a href="#" id="mDownload" class="btn-download" download>Скачать JAR</a>
+        <h2 id="mTitle" style="margin-bottom: 15px;"></h2>
+        <p id="mDesc" style="color: var(--text-secondary); margin-bottom: 30px; line-height: 1.5;"></p>
+        <a href="#" id="mDownload" class="apple-button">Скачать мод</a>
+        <p onclick="closeModal()" style="margin-top: 20px; color: var(--accent-blue); cursor: pointer; font-size: 14px;">Закрыть</p>
     </div>
 </div>
 
 <script>
     const mods = [
-        { name: "BrandonsCore", file: "BrandonsCore-1.21.1-3.2.1.309.jar", desc: "Библиотека для работы Draconic Evolution." },
-        { name: "CodeChickenLib", file: "CodeChickenLib-1.21.1-4.6.1.526.jar", desc: "Технический мод для рендеринга моделей." },
-        { name: "Create", file: "create-1.21.1-6.0.10.jar", desc: "Автоматизация, конвейеры и кинетическая энергия." },
-        { name: "Create Aeronautics", file: "create-aeronautics-bundled-1.21.1-1.3.0.jar", desc: "Полеты и создание воздушных кораблей." },
-        { name: "Draconic Evolution", file: "Draconic-Evolution-1.21.1-3.1.4.632.jar", desc: "Мощное снаряжение и экстремальная энергия." },
-        { name: "EasyLogin", file: "easylogin-neoforge-1.21.1-1.0.1.jar", desc: "Система регистрации и входа на сервер." },
-        { name: "Hostile Neural Networks", file: "HostileNeuralNetworks-1.21.1-6.4.2.jar", desc: "Добыча лута из мобов через симуляции." },
-        { name: "Iron Chests", file: "ironchest-1.21-neoforge-16.0.7.jar", desc: "Сундуки с расширенным объемом хранения." },
-        { name: "Jade", file: "Jade-1.21.1-NeoForge-15.10.5.jar", desc: "Информационные подсказки о блоках." },
-        { name: "JEI", file: "jei-1.21.1-neoforge-19.39.0.368.jar", desc: "Просмотр рецептов крафта." },
-        { name: "Just Hammers", file: "just-hammers-neoforge-21.1.4.jar", desc: "Молоты для быстрого копания 3х3." },
-        { name: "KubeJS", file: "kubejs-neoforge-2101.7.2-build.368.jar", desc: "Скриптовый движок для настройки игры." },
-        { name: "Lithosphere", file: "lithosphere-1.8.1.jar", desc: "Реалистичная генерация ландшафта." },
-        { name: "Lithostitched", file: "lithostitched-1.7.13-neoforge-21.1.jar", desc: "Оптимизация работы с биомами." },
-        { name: "Mekanism", file: "Mekanism-1.21.1-10.7.19.85.jar", desc: "Высокотехнологичное производство и заводы." },
-        { name: "Mekanism Generators", file: "MekanismGenerators-1.21.1-10.7.19.85.jar", desc: "Генераторы энергии для Mekanism." },
-        { name: "Pipez", file: "pipez-neoforge-1.21.1-1.2.31.jar", desc: "Лучшие трубы для ресурсов и энергии." },
-        { name: "Placebo", file: "Placebo-1.21.1-9.9.1.jar", desc: "Вспомогательная библиотека модов." },
-        { name: "ProjectE Int.", file: "ProjectE_Integration-1.21.1-8.3.1.jar", desc: "Связка ProjectE с другими модами." },
-        { name: "ProjectE", file: "ProjectE-1.21.1-PE1.1.0.jar", desc: "Алхимия и трансмутация материи." },
-        { name: "Project Expansion", file: "projectexpansion-1.21.1-1.0.6.jar", desc: "Расширение контента ProjectE." },
-        { name: "Re-Avaritia", file: "Re-Avaritia-neoforge-1.21.1-1.3.9.9-release.jar", desc: "Самый дорогой эндгейм контент." },
-        { name: "Refined Storage", file: "refinedstorage-neoforge-2.0.9.jar", desc: "Цифровое хранение предметов." },
-        { name: "Rhino", file: "rhino-2101.2.8-build.91.jar", desc: "Движок JavaScript для KubeJS." },
-        { name: "Sable", file: "sable-neoforge-1.21.1-2.0.3.jar", desc: "Оптимизация освещения в игре." },
-        { name: "Tectonic", file: "tectonic-3.0.26-neoforge-21.1.jar", desc: "Масштабное изменение генерации мира." }
+        { name: "BrandonsCore", file: "BrandonsCore-1.21.1-3.2.1.309.jar", desc: "Ядро для Draconic Evolution." },
+        { name: "CodeChickenLib", file: "CodeChickenLib-1.21.1-4.6.1.526.jar", desc: "Библиотека для рендеринга моделей." },
+        { name: "Create", file: "create-1.21.1-6.0.10.jar", desc: "Механика, автоматизация и шестерни." },
+        { name: "Create Aeronautics", file: "create-aeronautics-bundled-1.21.1-1.3.0.jar", desc: "Полеты на кораблях из блоков." },
+        { name: "Draconic Evolution", file: "Draconic-Evolution-1.21.1-3.1.4.632.jar", desc: "Мощная энергия и инструменты." },
+        { name: "EasyLogin", file: "easylogin-neoforge-1.21.1-1.0.1.jar", desc: "Система паролей на сервере." },
+        { name: "Hostile Neural Networks", file: "HostileNeuralNetworks-1.21.1-6.4.2.jar", desc: "Симуляция фарма мобов." },
+        { name: "Iron Chests", file: "ironchest-1.21-neoforge-16.0.7.jar", desc: "Огромные железные сундуки." },
+        { name: "Jade", file: "Jade-1.21.1-NeoForge-15.10.5.jar", desc: "Инфо о блоках при наведении." },
+        { name: "JEI", file: "jei-1.21.1-neoforge-19.39.0.368.jar", desc: "Просмотр всех рецептов крафта." },
+        { name: "Just Hammers", file: "just-hammers-neoforge-21.1.4.jar", desc: "Молоты для копания 3х3." },
+        { name: "KubeJS", file: "kubejs-neoforge-2101.7.2-build.368.jar", desc: "Настройка рецептов сервера." },
+        { name: "Lithosphere", file: "lithosphere-1.8.1.jar", desc: "Улучшенная генерация мира." },
+        { name: "Lithostitched", file: "lithostitched-1.7.13-neoforge-21.1.jar", desc: "Оптимизация биомов." },
+        { name: "Mekanism", file: "Mekanism-1.21.1-10.7.19.85.jar", desc: "Сложные технические заводы." },
+        { name: "Mekanism Generators", file: "MekanismGenerators-1.21.1-10.7.19.85.jar", desc: "Энергия для Mekanism." },
+        { name: "Pipez", file: "pipez-neoforge-1.21.1-1.2.31.jar", desc: "Транспортировка ресурсов." },
+        { name: "Placebo", file: "Placebo-1.21.1-9.9.1.jar", desc: "Техническая библиотека." },
+        { name: "ProjectE Int.", file: "ProjectE_Integration-1.21.1-8.3.1.jar", desc: "Связка ProjectE с модами." },
+        { name: "ProjectE", file: "ProjectE-1.21.1-PE1.1.0.jar", desc: "Алхимия и EMC обмен." },
+        { name: "Project Expansion", file: "projectexpansion-1.21.1-1.0.6.jar", desc: "Новый контент для ProjectE." },
+        { name: "Re-Avaritia", file: "Re-Avaritia-neoforge-1.21.1-1.3.9.9-release.jar", desc: "Самые мощные и дорогие крафты." },
+        { name: "Refined Storage", file: "refinedstorage-neoforge-2.0.9.jar", desc: "Цифровое хранение ресурсов." },
+        { name: "Rhino", file: "rhino-2101.2.8-build.91.jar", desc: "Движок для KubeJS." },
+        { name: "Sable", file: "sable-neoforge-1.21.1-2.0.3.jar", desc: "Оптимизация света." },
+        { name: "Tectonic", file: "tectonic-3.0.26-neoforge-21.1.jar", desc: "Эпичные горы и ландшафты." }
     ];
 
     function renderMods() {
         const grid = document.getElementById('modGrid');
         mods.forEach(mod => {
-            const div = document.createElement('div');
-            div.className = 'mod-item';
-            div.innerHTML = `<span>${mod.name}</span><span style="color:var(--primary); font-size:0.7em;">ИНФО</span>`;
-            div.onclick = () => openModal(mod);
-            grid.appendChild(div);
+            const card = document.createElement('div');
+            card.className = 'mod-card';
+            card.innerHTML = `<div style="font-weight:600; font-size:16px;">${mod.name}</div><div style="color:var(--accent-blue); font-size:12px; margin-top:10px;">Подробнее</div>`;
+            card.onclick = () => openModal(mod);
+            grid.appendChild(card);
         });
     }
 
@@ -372,22 +365,21 @@
         document.getElementById('modalOverlay').style.display = 'flex';
     }
 
-    function closeModal() {
-        document.getElementById('modalOverlay').style.display = 'none';
-    }
-
-    function copyText(id, btn) {
-        const text = document.getElementById(id).innerText;
-        navigator.clipboard.writeText(text);
-        btn.innerText = 'Готово';
-        setTimeout(() => { btn.innerText = 'Копировать'; }, 2000);
-    }
+    function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
 
     function openTab(name) {
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(name).classList.add('active');
         event.currentTarget.classList.add('active');
+    }
+
+    function copyText(id, btn) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text);
+        const oldText = btn.innerText;
+        btn.innerText = 'Готово';
+        setTimeout(() => { btn.innerText = oldText; }, 2000);
     }
 
     window.onload = renderMods;
