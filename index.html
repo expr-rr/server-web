@@ -11,6 +11,8 @@
             --accent: #4caf50;
             --bg: #0f0f0f;
             --card: #1e1e1e;
+            --discord: #5865F2;
+            --tiktok: #ff0050;
         }
 
         body {
@@ -84,8 +86,7 @@
         }
 
         .ip-text, .wallet-text { font-family: 'Courier New', monospace; color: #a2ffaf; font-size: 1.1em; font-weight: bold; overflow-wrap: anywhere; margin-right: 10px; }
-        .wallet-text { font-size: 0.85em; color: #88ccff; }
-
+        
         .copy-btn {
             background: var(--primary);
             color: white;
@@ -117,12 +118,26 @@
             font-size: 1.2em;
         }
 
-        .important-note {
-            background: #2d2d2d;
+        /* Инструкция */
+        .step { margin-bottom: 30px; }
+        .step h4 { color: var(--primary); margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .step p { font-size: 0.95em; line-height: 1.6; color: #ccc; }
+        
+        .folder-list {
+            background: #252525;
             padding: 15px;
             border-radius: 10px;
-            margin: 15px 0;
+            margin: 10px 0;
+            border: 1px solid #444;
+        }
+        .folder-item { color: #5eff5e; font-family: monospace; font-weight: bold; }
+
+        .os-warning {
+            background: #332b00;
             border-left: 4px solid #ffcc00;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.9em;
         }
 
         .mod-list {
@@ -133,43 +148,54 @@
 
         .mod-item {
             background: #252525;
-            padding: 10px 15px;
+            padding: 12px 15px;
             border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border: 1px solid #333;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
-        .mod-name { font-weight: bold; color: #ddd; font-size: 0.85em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 250px; }
-        
-        .mod-dl {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.75em;
-            border: 1px solid var(--primary);
-            padding: 2px 6px;
-            border-radius: 4px;
-            flex-shrink: 0;
-        }
-
-        .contact-link {
-            display: inline-block;
-            margin-bottom: 15px;
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 1.1em;
-            font-weight: bold;
-        }
+        .mod-item:hover { background: #333; border-color: var(--primary); }
 
         .rule-item {
             margin-bottom: 15px;
-            padding-left: 10px;
-            border-left: 2px solid var(--primary);
+            padding: 15px;
+            background: #252525;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* МОДАЛЬНОЕ ОКНО */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: #222;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--primary);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 25px; color: #888; cursor: pointer;
         }
 
         footer { text-align: center; padding: 30px; color: #555; font-size: 0.9em; border-top: 1px solid #222; }
-        code { background: #000; padding: 2px 5px; border-radius: 4px; color: #ffadad; }
     </style>
 </head>
 <body>
@@ -181,6 +207,7 @@
     </div>
 
     <div class="content">
+        <!-- IP -->
         <div class="ip-section">
             <div>
                 <div style="font-size: 0.8em; color: #888;">IP АДРЕС СЕРВЕРА</div>
@@ -189,6 +216,7 @@
             <button class="copy-btn" onclick="copyText('ip', this)">Копировать</button>
         </div>
 
+        <!-- Табы -->
         <div class="tabs">
             <button class="tab-btn active" onclick="openTab('guide')">Инструкция</button>
             <button class="tab-btn" onclick="openTab('mods')">Список модов</button>
@@ -203,106 +231,158 @@
                 <a href="https://github.com/expr-rr/server-web/releases/download/1/KaradzicSMP.zip" class="btn-download" download>Скачать KaradzicSMP.zip</a>
             </div>
 
-            <ol style="line-height: 1.8;">
-                <li><strong>Версия:</strong> Создай в лаунчере профиль <strong>NeoForge 1.21.1</strong>.</li>
-                <li><strong>Путь:</strong> Открой папку этой конкретной версии.</li>
-                <li><strong>Распаковка:</strong> Распакуй скачанный файл <code>KaradzicSMP.zip</code>.</li>
-                
-                <div class="important-note">
-                    <strong>Для Windows:</strong> Папку <code>__MACOSX</code> внутри архива игнорируй или удали.
-                </div>
+            <div class="step">
+                <h4>Шаг 1: Подготовка версии</h4>
+                <p>В вашем лаунчере создайте и установите профиль с версией <strong>NeoForge 1.21.1</strong>.</p>
+            </div>
 
-                <li><strong>Установка:</strong> Перемести три папки из архива прямо в папку созданной версии с заменой файлов.</li>
-                <li><strong>Старт:</strong> Запускай игру и входи на сервер.</li>
-            </ol>
-            <p style="text-align:center; opacity: 0.7;">Регистрация при входе: <code>/register пароль пароль</code></p>
+            <div class="step">
+                <h4>Шаг 2: Распаковка</h4>
+                <p>Скачайте и распакуйте архив <code>KaradzicSMP.zip</code> в любую папку на вашем компьютере.</p>
+                <div class="os-warning">
+                    <strong>Внимание для Windows:</strong> Игнорируйте папку <code>__MACOSX</code> внутри архива. Это системные файлы Mac, которые не нужны для работы игры.
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>Шаг 3: Перенос файлов</h4>
+                <p>В лаунчере нажмите на кнопку <strong>"Открыть папку"</strong> (значок папки рядом с кнопкой запуска или в настройках профиля). Перенесите туда следующие папки из архива:</p>
+                <div class="folder-list">
+                    1. <span class="folder-item">mods</span> — файлы модов.<br>
+                    2. <span class="folder-item">config</span> — настройки.<br>
+                    3. <span class="folder-item">kubejs</span> — скрипты.
+                </div>
+                <p>При появлении вопроса о замене файлов выберите <strong>"Да (Заменить)"</strong>.</p>
+            </div>
+
+            <div class="step">
+                <h4>Шаг 4: Готово!</h4>
+                <p>Запускайте игру и подключайтесь к серверу. Для регистрации в чате используйте команду:</p>
+                <code style="background: #000; padding: 5px 10px; border-radius: 5px; color: var(--primary);">/register [пароль] [пароль]</code>
+            </div>
         </div>
 
         <!-- ВКЛАДКА: МОДЫ -->
         <div id="mods" class="tab-content">
             <h3 style="margin-top:0">Состав сборки</h3>
-            <div class="mod-list">
-                <div class="mod-item"><span class="mod-name">BrandonsCore</span><a href="mods/BrandonsCore-1.21.1-3.2.1.309.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">CodeChickenLib</span><a href="mods/CodeChickenLib-1.21.1-4.6.1.526.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Create</span><a href="mods/create-1.21.1-6.0.10.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Create Aeronautics</span><a href="mods/create-aeronautics-bundled-1.21.1-1.3.0.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Draconic Evolution</span><a href="mods/Draconic-Evolution-1.21.1-3.1.4.632.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">EasyLogin</span><a href="mods/easylogin-neoforge-1.21.1-1.0.1.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Hostile Neural Networks</span><a href="mods/HostileNeuralNetworks-1.21.1-6.4.2.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Iron Chests</span><a href="mods/ironchest-1.21-neoforge-16.0.7.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Jade</span><a href="mods/Jade-1.21.1-NeoForge-15.10.5.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">JEI</span><a href="mods/jei-1.21.1-neoforge-19.39.0.368.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Just Hammers</span><a href="mods/just-hammers-neoforge-21.1.4.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">KubeJS</span><a href="mods/kubejs-neoforge-2101.7.2-build.368.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Lithosphere</span><a href="mods/lithosphere-1.8.1.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Lithostitched</span><a href="mods/lithostitched-1.7.13-neoforge-21.1.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Mekanism</span><a href="mods/Mekanism-1.21.1-10.7.19.85.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Mekanism Generators</span><a href="mods/MekanismGenerators-1.21.1-10.7.19.85.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Pipez</span><a href="mods/pipez-neoforge-1.21.1-1.2.31.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Placebo</span><a href="mods/Placebo-1.21.1-9.9.1.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">ProjectE Integration</span><a href="mods/ProjectE_Integration-1.21.1-8.3.1.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">ProjectE</span><a href="mods/ProjectE-1.21.1-PE1.1.0.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Project Expansion</span><a href="mods/projectexpansion-1.21.1-1.0.6.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Re-Avaritia</span><a href="mods/Re-Avaritia-neoforge-1.21.1-1.3.9.9-release.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Refined Storage</span><a href="mods/refinedstorage-neoforge-2.0.9.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Rhino</span><a href="mods/rhino-2101.2.8-build.91.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Sable</span><a href="mods/sable-neoforge-1.21.1-2.0.3.jar" class="mod-dl" download>Скачать</a></div>
-                <div class="mod-item"><span class="mod-name">Tectonic</span><a href="mods/tectonic-3.0.26-neoforge-21.1.jar" class="mod-dl" download>Скачать</a></div>
-            </div>
+            <div class="mod-list" id="modGrid"></div>
         </div>
 
         <!-- ВКЛАДКА: ПРАВИЛА -->
         <div id="rules" class="tab-content">
-            <h3 style="margin-top:0">Правила сервера</h3>
-            <div class="rule-item"><strong>1. Уважение:</strong> Запрещены оскорбления, токсичное поведение и спам.</div>
-            <div class="rule-item"><strong>2. Читы:</strong> Использование любого софта, дающего преимущество (X-Ray и др.), карается баном.</div>
-            <div class="rule-item"><strong>3. Лаг-машины:</strong> Запрещено создание механизмов, намеренно нагружающих сервер.</div>
+            <h3 style="margin-top:0">Правила и ценности</h3>
+            <div class="rule-item"><strong>1. Уважение:</strong> Будьте вежливы. Оскорбления и токсичность запрещены.</div>
+            <div class="rule-item"><strong>2. Гриферство (Запрещено):</strong> Не разрушайте чужие постройки и не воруйте ресурсы. Мы за созидание!</div>
+            <div class="rule-item"><strong>3. Честная игра:</strong> Использование читов карается вечным баном.</div>
+            
+            <div style="background: rgba(92, 184, 92, 0.1); padding: 20px; border-radius: 12px; margin-top: 25px; border: 1px solid rgba(92, 184, 92, 0.3);">
+                <h4 style="margin-top:0; color: var(--primary);">Наше сообщество</h4>
+                <p style="margin-bottom:0; font-size: 0.95em; line-height: 1.6;">
+                    KaradzicSMP — это место для совместной игры и творчества. Уважайте чужой труд, помогайте друг другу, и вместе мы создадим крутой мир!
+                </p>
+            </div>
         </div>
 
         <!-- ВКЛАДКА: СВЯЗЬ -->
         <div id="contact" class="tab-content">
-            <h3 style="margin-top:0">Связь с администрацией</h3>
-            <p>Telegram администратора:</p>
-            <a href="https://t.me/lazardraganovic" class="contact-link" target="_blank">@lazardraganovic</a>
+            <h3 style="margin-top:0">Наши соцсети</h3>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
+                <a href="https://t.me/lazardraganovic" target="_blank" style="background:#0088cc; padding:15px; border-radius:10px; text-decoration:none; color:white; font-weight:bold; text-align:center;">Telegram</a>
+                <a href="https://discord.gg/JYhARU63Sc" target="_blank" style="background:#5865F2; padding:15px; border-radius:10px; text-decoration:none; color:white; font-weight:bold; text-align:center;">Discord</a>
+                <a href="https://www.tiktok.com/@neverstressadhh" target="_blank" style="background:#ff0050; padding:15px; border-radius:10px; text-decoration:none; color:white; font-weight:bold; text-align:center;">TikTok</a>
+            </div>
         </div>
 
         <!-- ВКЛАДКА: ПОЖЕРТВОВАНИЕ -->
         <div id="donate" class="tab-content">
-            <h3 style="margin-top:0">Поддержать проект</h3>
-            <p>Если вы хотите помочь развитию сервера KaradzicSMP, вы можете отправить пожертвование на TON кошелек:</p>
+            <h3 style="margin-top:0">Поддержать проект (TON)</h3>
             <div class="wallet-section">
-                <div style="min-width: 0;">
-                    <div style="font-size: 0.7em; color: #888; margin-bottom: 5px;">TON КОШЕЛЕК</div>
-                    <div class="wallet-text" id="tonWallet">UQBL32El3rRWTgje2exLXLDveQxVBA9aBvxF4rzR3pXVZ9dR</div>
-                </div>
+                <div class="wallet-text" id="tonWallet" style="font-size: 0.7em;">UQBL32El3rRWTgje2exLXLDveQxVBA9aBvxF4rzR3pXVZ9dR</div>
                 <button class="copy-btn" onclick="copyText('tonWallet', this)">Копировать</button>
             </div>
-            <p style="font-size: 0.9em; color: #888;">Все средства идут на оплату хостинга и улучшение оборудования.</p>
         </div>
     </div>
 
-    <footer>
-        KaradzicSMP &copy; 2026
-    </footer>
+    <footer>KaradzicSMP &copy; 2026</footer>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h2 id="mTitle" style="color: var(--primary); margin-top:0;"></h2>
+        <p id="mDesc" style="line-height:1.6; color:#ccc; margin:20px 0;"></p>
+        <a href="#" id="mDownload" class="btn-download" download>Скачать JAR</a>
+    </div>
 </div>
 
 <script>
-    function copyText(elementId, btn) {
-        const text = document.getElementById(elementId).innerText;
-        navigator.clipboard.writeText(text);
-        const originalText = btn.innerText;
-        btn.innerText = 'Готово';
-        setTimeout(() => { btn.innerText = originalText; }, 2000);
+    const mods = [
+        { name: "BrandonsCore", file: "BrandonsCore-1.21.1-3.2.1.309.jar", desc: "Библиотека для работы Draconic Evolution." },
+        { name: "CodeChickenLib", file: "CodeChickenLib-1.21.1-4.6.1.526.jar", desc: "Технический мод для рендеринга моделей." },
+        { name: "Create", file: "create-1.21.1-6.0.10.jar", desc: "Автоматизация, конвейеры и кинетическая энергия." },
+        { name: "Create Aeronautics", file: "create-aeronautics-bundled-1.21.1-1.3.0.jar", desc: "Полеты и создание воздушных кораблей." },
+        { name: "Draconic Evolution", file: "Draconic-Evolution-1.21.1-3.1.4.632.jar", desc: "Мощное снаряжение и экстремальная энергия." },
+        { name: "EasyLogin", file: "easylogin-neoforge-1.21.1-1.0.1.jar", desc: "Система регистрации и входа на сервер." },
+        { name: "Hostile Neural Networks", file: "HostileNeuralNetworks-1.21.1-6.4.2.jar", desc: "Добыча лута из мобов через симуляции." },
+        { name: "Iron Chests", file: "ironchest-1.21-neoforge-16.0.7.jar", desc: "Сундуки с расширенным объемом хранения." },
+        { name: "Jade", file: "Jade-1.21.1-NeoForge-15.10.5.jar", desc: "Информационные подсказки о блоках." },
+        { name: "JEI", file: "jei-1.21.1-neoforge-19.39.0.368.jar", desc: "Просмотр рецептов крафта." },
+        { name: "Just Hammers", file: "just-hammers-neoforge-21.1.4.jar", desc: "Молоты для быстрого копания 3х3." },
+        { name: "KubeJS", file: "kubejs-neoforge-2101.7.2-build.368.jar", desc: "Скриптовый движок для настройки игры." },
+        { name: "Lithosphere", file: "lithosphere-1.8.1.jar", desc: "Реалистичная генерация ландшафта." },
+        { name: "Lithostitched", file: "lithostitched-1.7.13-neoforge-21.1.jar", desc: "Оптимизация работы с биомами." },
+        { name: "Mekanism", file: "Mekanism-1.21.1-10.7.19.85.jar", desc: "Высокотехнологичное производство и заводы." },
+        { name: "Mekanism Generators", file: "MekanismGenerators-1.21.1-10.7.19.85.jar", desc: "Генераторы энергии для Mekanism." },
+        { name: "Pipez", file: "pipez-neoforge-1.21.1-1.2.31.jar", desc: "Лучшие трубы для ресурсов и энергии." },
+        { name: "Placebo", file: "Placebo-1.21.1-9.9.1.jar", desc: "Вспомогательная библиотека модов." },
+        { name: "ProjectE Int.", file: "ProjectE_Integration-1.21.1-8.3.1.jar", desc: "Связка ProjectE с другими модами." },
+        { name: "ProjectE", file: "ProjectE-1.21.1-PE1.1.0.jar", desc: "Алхимия и трансмутация материи." },
+        { name: "Project Expansion", file: "projectexpansion-1.21.1-1.0.6.jar", desc: "Расширение контента ProjectE." },
+        { name: "Re-Avaritia", file: "Re-Avaritia-neoforge-1.21.1-1.3.9.9-release.jar", desc: "Самый дорогой эндгейм контент." },
+        { name: "Refined Storage", file: "refinedstorage-neoforge-2.0.9.jar", desc: "Цифровое хранение предметов." },
+        { name: "Rhino", file: "rhino-2101.2.8-build.91.jar", desc: "Движок JavaScript для KubeJS." },
+        { name: "Sable", file: "sable-neoforge-1.21.1-2.0.3.jar", desc: "Оптимизация освещения в игре." },
+        { name: "Tectonic", file: "tectonic-3.0.26-neoforge-21.1.jar", desc: "Масштабное изменение генерации мира." }
+    ];
+
+    function renderMods() {
+        const grid = document.getElementById('modGrid');
+        mods.forEach(mod => {
+            const div = document.createElement('div');
+            div.className = 'mod-item';
+            div.innerHTML = `<span>${mod.name}</span><span style="color:var(--primary); font-size:0.7em;">ИНФО</span>`;
+            div.onclick = () => openModal(mod);
+            grid.appendChild(div);
+        });
     }
 
-    function openTab(tabName) {
-        const contents = document.querySelectorAll('.tab-content');
-        const buttons = document.querySelectorAll('.tab-btn');
-        contents.forEach(content => content.classList.remove('active'));
-        buttons.forEach(btn => btn.classList.remove('active'));
-        document.getElementById(tabName).classList.add('active');
+    function openModal(mod) {
+        document.getElementById('mTitle').innerText = mod.name;
+        document.getElementById('mDesc').innerText = mod.desc;
+        document.getElementById('mDownload').href = `mods/${mod.file}`;
+        document.getElementById('modalOverlay').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('modalOverlay').style.display = 'none';
+    }
+
+    function copyText(id, btn) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text);
+        btn.innerText = 'Готово';
+        setTimeout(() => { btn.innerText = 'Копировать'; }, 2000);
+    }
+
+    function openTab(name) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(name).classList.add('active');
         event.currentTarget.classList.add('active');
     }
+
+    window.onload = renderMods;
 </script>
 
 </body>
