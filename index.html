@@ -118,7 +118,6 @@
             font-size: 1.2em;
         }
 
-        /* Инструкция */
         .step { margin-bottom: 30px; }
         .step h4 { color: var(--primary); margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
         .step p { font-size: 0.95em; line-height: 1.6; color: #ccc; }
@@ -207,16 +206,16 @@
     </div>
 
     <div class="content">
-        <!-- IP -->
+        <!-- IP Address Section -->
         <div class="ip-section">
             <div>
                 <div style="font-size: 0.8em; color: #888;">IP АДРЕС СЕРВЕРА</div>
-                <div class="ip-text" id="ip">fsn7.joinserver.xyz:25586</div>
+                <div class="ip-text" id="ip">5.9.235.227:25586</div>
             </div>
             <button class="copy-btn" onclick="copyText('ip', this)">Копировать</button>
         </div>
 
-        <!-- Табы -->
+        <!-- Navigation Tabs -->
         <div class="tabs">
             <button class="tab-btn active" onclick="openTab('guide')">Инструкция</button>
             <button class="tab-btn" onclick="openTab('mods')">Список модов</button>
@@ -246,7 +245,7 @@
 
             <div class="step">
                 <h4>Шаг 3: Перенос файлов</h4>
-                <p>В лаунчере нажмите на кнопку <strong>"Открыть папку"</strong> (значок папки рядом с кнопкой запуска или в настройках профиля). Перенесите туда следующие папки из архива:</p>
+                <p>В лаунчере нажмите на кнопку <strong>"Открыть папку"</strong> профиля. Перенесите туда следующие папки из архива:</p>
                 <div class="folder-list">
                     1. <span class="folder-item">mods</span> — файлы модов.<br>
                     2. <span class="folder-item">config</span> — настройки.<br>
@@ -257,7 +256,7 @@
 
             <div class="step">
                 <h4>Шаг 4: Готово!</h4>
-                <p>Запускайте игру и подключайтесь к серверу. Для регистрации в чате используйте команду:</p>
+                <p>Запускайте игру и подключайтесь к серверу. Для регистрации используйте команду:</p>
                 <code style="background: #000; padding: 5px 10px; border-radius: 5px; color: var(--primary);">/register [пароль] [пароль]</code>
             </div>
         </div>
@@ -270,15 +269,24 @@
 
         <!-- ВКЛАДКА: ПРАВИЛА -->
         <div id="rules" class="tab-content">
-            <h3 style="margin-top:0">Правила и ценности</h3>
-            <div class="rule-item"><strong>1. Уважение:</strong> Будьте вежливы. Оскорбления и токсичность запрещены.</div>
-            <div class="rule-item"><strong>2. Гриферство (Запрещено):</strong> Не разрушайте чужие постройки и не воруйте ресурсы. Мы за созидание!</div>
-            <div class="rule-item"><strong>3. Честная игра:</strong> Использование читов карается вечным баном.</div>
+            <h3 style="margin-top:0">Правила сервера</h3>
             
+            <div class="rule-item">
+                <strong>1. Уважение:</strong> Будьте вежливы с другими игроками. Оскорбления и токсичное поведение запрещены.
+            </div>
+            
+            <div class="rule-item">
+                <strong>2. Честная игра:</strong> Использование любых читов (X-Ray, Fly, чит-клиенты) карается вечным баном.
+            </div>
+            
+            <div class="rule-item">
+                <strong>3. Стабильность:</strong> Запрещено создание механизмов (лаг-машин), намеренно нагружающих сервер.
+            </div>
+
             <div style="background: rgba(92, 184, 92, 0.1); padding: 20px; border-radius: 12px; margin-top: 25px; border: 1px solid rgba(92, 184, 92, 0.3);">
                 <h4 style="margin-top:0; color: var(--primary);">Наше сообщество</h4>
                 <p style="margin-bottom:0; font-size: 0.95em; line-height: 1.6;">
-                    KaradzicSMP — это место для совместной игры и творчества. Уважайте чужой труд, помогайте друг другу, и вместе мы создадим крутой мир!
+                    KaradzicSMP — это место для совместной игры. Объединяйтесь в команды, стройте крутые проекты и наслаждайтесь миром Minecraft!
                 </p>
             </div>
         </div>
@@ -306,7 +314,7 @@
     <footer>KaradzicSMP &copy; 2026</footer>
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО -->
+<!-- МОДАЛЬНОЕ ОКНО МОДОВ -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
     <div class="modal" onclick="event.stopPropagation()">
         <span class="close-modal" onclick="closeModal()">&times;</span>
