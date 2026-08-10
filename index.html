@@ -5,26 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KaradžićSMP</title>
     <style>
-        /* ИСПРАВЛЕНИЕ СМЕЩЕНИЯ КОНТЕНТА: Резервируем место под скроллбар */
+        /* ИСПРАВЛЕНИЕ СМЕЩЕНИЯ КОНТЕНТА */
         html {
             scrollbar-gutter: stable;
         }
 
         :root {
-            /* Основная палитра Apple */
             --bg-light: #f5f5f7;
             --bg-white: #ffffff;
             --text-primary: #1d1d1f;
             --text-secondary: #6e6e73;
             --accent-blue: #0066cc;
-            
-            /* Фирменный градиент Apple Intelligence 2026 */
             --ai-gradient: linear-gradient(70deg, #fd9700 9%, #ff4400 28%, #ff2469 49%, #c65cff 78%, #0092ff 100%);
-            
-            /* Шрифты */
             --font-main: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", sans-serif;
-            
-            /* Плавные анимации */
             --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.25, 1);
         }
 
@@ -37,11 +30,10 @@
             letter-spacing: -0.022em;
             -webkit-font-smoothing: antialiased;
             padding-bottom: 100px;
-            /* Всегда показываем вертикальную полосу, чтобы контент не прыгал */
             overflow-y: scroll;
         }
 
-        /* ШАПКА САЙТА */
+        /* ШАПКА */
         header {
             padding: 80px 20px 40px;
             text-align: center;
@@ -53,7 +45,6 @@
             margin-bottom: 10px;
         }
 
-        /* Текст с градиентом AI */
         .text-ai-gradient {
             background: var(--ai-gradient);
             -webkit-background-clip: text;
@@ -67,7 +58,7 @@
             padding: 0 20px;
         }
 
-        /* СТИЛЬ КАРТОЧЕК */
+        /* КАРТОЧКИ */
         .apple-card {
             background: var(--bg-white);
             border-radius: 22px;
@@ -107,7 +98,7 @@
             color: white;
         }
 
-        /* ПАНЕЛЬ С IP (МАТОВОЕ СТЕКЛО) */
+        /* ПАНЕЛЬ IP */
         .glass-panel {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(20px);
@@ -186,7 +177,7 @@
             text-align: center;
         }
 
-        /* СЕКЦИЯ СВЯЗИ */
+        /* СВЯЗЬ */
         .contact-shelf {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -215,7 +206,7 @@
             transform: scale(1.02);
         }
 
-        /* ПРАВИЛА И ИНСТРУКЦИЯ */
+        /* ИНСТРУКЦИЯ */
         .step { margin-bottom: 30px; }
         .step h4 { color: var(--primary); margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
         .step p { font-size: 0.95em; line-height: 1.6; color: var(--text-secondary); }
@@ -256,7 +247,7 @@
 </header>
 
 <div class="container">
-    <!-- Панель IP -->
+    <!-- IP PANEL -->
     <div class="glass-panel">
         <div>
             <span style="color: var(--text-secondary); font-size: 13px; text-transform: uppercase;">Адрес подключения</span>
@@ -265,7 +256,7 @@
         <button class="apple-button" style="padding: 10px 20px;" onclick="copyText('ip', this)">Копировать</button>
     </div>
 
-    <!-- Вкладки -->
+    <!-- TABS NAVIGATION -->
     <div class="tabs-nav">
         <button class="tab-btn active" onclick="openTab('guide')">Инструкция</button>
         <button class="tab-btn" onclick="openTab('mods')">Моды</button>
@@ -274,11 +265,11 @@
         <button class="tab-btn" onclick="openTab('donate')">Пожертвование</button>
     </div>
 
-    <!-- ВКЛАДКА: ИНСТРУКЦИЯ -->
+    <!-- TAB: ИНСТРУКЦИЯ -->
     <div id="guide" class="tab-content active">
         <div class="apple-card" style="text-align: center;">
             <h2 style="font-size: 32px; margin-bottom: 20px;">Готов к игре?</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 30px;">Скачайте архив KaradzicSMP.zip со всеми настроенными модами и конфигами.</p>
+            <p style="color: var(--text-secondary); margin-bottom: 30px;">Скачайте архив KaradzicSMP.zip со всеми настроенными файлами сервера.</p>
             <a href="https://github.com/expr-rr/server-web/releases/download/1/KaradzicSMP.zip" class="apple-button">Скачать KaradzicSMP.zip</a>
         </div>
 
@@ -292,15 +283,15 @@
 
             <div class="step">
                 <h4>2. Распаковка</h4>
-                <p>Распакуйте архив в любую папку. </p>
+                <p>Распакуйте архив в любую папку на компьютере.</p>
                 <div class="os-warning">
-                    <strong>Инфо для Windows:</strong> Игнорируйте папку <code>__MACOSX</code> внутри архива. Это технические файлы macOS, они не нужны для работы.
+                    <strong>Инфо для Windows:</strong> Игнорируйте папку <code>__MACOSX</code> внутри архива. Это технические файлы macOS, они не нужны для игры.
                 </div>
             </div>
 
             <div class="step">
                 <h4>3. Перенос папок</h4>
-                <p>Нажмите в лаунчере кнопку <strong>"Открыть папку"</strong> вашей версии игры. Перенесите туда из распакованного архива три папки:</p>
+                <p>Нажмите в лаунчере кнопку <strong>"Открыть папку"</strong> вашей версии игры. Перенесите туда из архива три папки:</p>
                 <div class="folder-list">
                     • <span class="folder-item">mods</span> — файлы модов.<br>
                     • <span class="folder-item">config</span> — файлы настроек.<br>
@@ -316,12 +307,12 @@
         </div>
     </div>
 
-    <!-- ВКЛАДКА: МОДЫ -->
+    <!-- TAB: МОДЫ -->
     <div id="mods" class="tab-content">
         <div class="mods-grid" id="modGrid"></div>
     </div>
 
-    <!-- ВКЛАДКА: ПРАВИЛА -->
+    <!-- TAB: ПРАВИЛА -->
     <div id="rules" class="tab-content">
         <div class="apple-card">
             <h3 style="margin-bottom: 20px;">Правила сервера</h3>
@@ -332,13 +323,13 @@
             <div style="background: rgba(92, 184, 92, 0.1); padding: 20px; border-radius: 12px; margin-top: 25px; border: 1px solid rgba(92, 184, 92, 0.3);">
                 <h4 style="margin-top:0; color: var(--primary);">Наше сообщество</h4>
                 <p style="margin-bottom:0; font-size: 0.95em; line-height: 1.6;">
-                    Уважайте чужой труд и помогайте друг другу. Вместе мы построим лучший мир на KaradžićSMP!
+                    Помогайте друг другу и уважайте чужой труд. Вместе мы построим лучший мир на KaradžićSMP!
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- ВКЛАДКА: СВЯЗЬ (С ИКОНКАМИ) -->
+    <!-- TAB: СВЯЗЬ -->
     <div id="contact" class="tab-content">
         <div class="contact-shelf">
             <a href="https://t.me/lazardraganovic" target="_blank" class="contact-link">
@@ -356,7 +347,7 @@
         </div>
     </div>
 
-    <!-- ВКЛАДКА: ПОЖЕРТВОВАНИЕ -->
+    <!-- TAB: ПОЖЕРТВОВАНИЕ -->
     <div id="donate" class="tab-content">
         <div class="apple-card" style="text-align: center;">
             <h3 style="margin-bottom: 20px;">Пожертвование</h3>
@@ -373,51 +364,50 @@
     &copy; 2026 KaradžićSMP.
 </footer>
 
-<!-- МОДАЛЬНОЕ ОКНО ДЛЯ ИНФО О МОДАХ -->
+<!-- MODAL FOR MODS -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
     <div class="modal" onclick="event.stopPropagation()">
         <h2 id="mTitle" style="margin-bottom: 15px;"></h2>
         <p id="mDesc" style="color: var(--text-secondary); margin-bottom: 30px; line-height: 1.5;"></p>
-        <a href="#" id="mDownload" class="apple-button" download>Скачать JAR</a>
+        <a href="#" id="mDownload" class="apple-button" download>Скачать мод</a>
         <p onclick="closeModal()" style="margin-top: 20px; color: var(--accent-blue); cursor: pointer; font-size: 14px;">Закрыть</p>
     </div>
 </div>
 
 <script>
-    /* МАССИВ ДАННЫХ МОДОВ (29 штук) */
+    /* СПИСОК МОДОВ С ОБНОВЛЕННЫМИ ФАЙЛАМИ */
     const mods = [
-        { name: "BrandonsCore", file: "BrandonsCore-1.21.1-3.2.1.309.jar", desc: "Ядро, необходимое для работы Draconic Evolution." },
-        { name: "CodeChickenLib", file: "CodeChickenLib-1.21.1-4.6.1.526.jar", desc: "Библиотека для рендеринга моделей и работы механизмов." },
-        { name: "Create", file: "create-1.21.1-6.0.10.jar", desc: "Глобальный мод на автоматизацию и кинетическую энергию." },
-        { name: "Create Aeronautics", file: "create-aeronautics-bundled-1.21.1-1.3.0.jar", desc: "Позволяет строить воздушные суда с физикой полета." },
-        { name: "Draconic Evolution", file: "Draconic-Evolution-1.21.1-3.1.4.632.jar", desc: "Мощное снаряжение и экстремальные системы энергии." },
-        { name: "EasyLogin", file: "easylogin-neoforge-1.21.1-1.0.1.jar", desc: "Система защиты аккаунта паролем при входе." },
-        { name: "Hostile Neural Networks", file: "HostileNeuralNetworks-1.21.1-6.4.2.jar", desc: "Фарм ресурсов из мобов через компьютерные симуляции." },
-        { name: "Iron Chests", file: "ironchest-1.21-neoforge-16.0.7.jar", desc: "Добавляет новые вместительные типы сундуков." },
-        { name: "Jade", file: "Jade-1.21.1-NeoForge-15.10.5.jar", desc: "Отображает информацию о блоке или мобе под прицелом." },
-        { name: "JEI", file: "jei-1.21.1-neoforge-19.39.0.368.jar", desc: "Показывает все рецепты крафтов прямо в инвентаре." },
-        { name: "Just Hammers", file: "just-hammers-neoforge-21.1.4.jar", desc: "Молоты для быстрой добычи блоков в радиусе 3х3." },
-        { name: "KubeJS", file: "kubejs-neoforge-2101.7.2-build.368.jar", desc: "Инструмент для создания серверных скриптов и рецептов." },
-        { name: "Lithosphere", file: "lithosphere-1.8.1.jar", desc: "Улучшенная и более глубокая генерация ландшафта." },
-        { name: "Lithostitched", file: "lithostitched-1.7.13-neoforge-21.1.jar", desc: "Техническая оптимизация работы с биомами." },
-        { name: "Mekanism", file: "Mekanism-1.21.1-10.7.19.85.jar", desc: "Высокотехнологичный мод на заводы и переработку руд." },
-        { name: "Mekanism Generators", file: "MekanismGenerators-1.21.1-10.7.19.85.jar", desc: "Различные способы генерации энергии для Mekanism." },
-        { name: "Pipez", file: "pipez-neoforge-1.21.1-1.2.31.jar", desc: "Универсальные трубы для предметов, жидкостей и энергии." },
-        { name: "Placebo", file: "Placebo-1.21.1-9.9.1.jar", desc: "Техническая библиотека для работы других дополнений." },
-        { name: "ProjectE Int.", file: "ProjectE_Integration-1.21.1-8.3.1.jar", desc: "Интеграция EMC из ProjectE с другими модами." },
-        { name: "ProjectE", file: "ProjectE-1.21.1-PE1.1.0.jar", desc: "Алхимия и трансмутация одних предметов в другие." },
-        { name: "Project Expansion", file: "projectexpansion-1.21.1-1.0.6.jar", desc: "Расширение контента для ProjectE." },
-        { name: "Re-Avaritia", file: "Re-Avaritia-neoforge-1.21.1-1.3.9.9-release.jar", desc: "Мод на экстремально дорогие крафты и бесконечную силу." },
-        { name: "Refined Storage", file: "refinedstorage-neoforge-2.0.9.jar", desc: "Цифровая система хранения и управления ресурсами." },
-        { name: "Rhino", file: "rhino-2101.2.8-build.91.jar", desc: "Библиотека JavaScript, необходимая для работы KubeJS." },
-        { name: "Sable", file: "sable-neoforge-1.21.1-2.0.3.jar", desc: "Оптимизация освещения для повышения FPS." },
-        { name: "Tectonic", file: "tectonic-3.0.26-neoforge-21.1.jar", desc: "Полностью меняет мир, добавляя горы и каньоны." },
-        { name: "Chunk Loaders", file: "chunkloaders-1.2.9-neoforge-mc1.21.jar", desc: "Позволяет держать чанки постоянно загруженными." },
-        { name: "Config Lib", file: "supermartijn642configlib-1.1.25-neoforge-mc1.21.jar", desc: "Библиотека для управления конфигами модов." },
-        { name: "Core Lib", file: "supermartijn642corelib-1.1.18-neoforge-mc1.21.jar", desc: "Общая библиотека для модов автора SuperMartijn642." }
+        { name: "BrandonsCore", file: "BrandonsCore-1.21.1-3.2.1.309.jar", desc: "Ядро для работы Draconic Evolution." },
+        { name: "CodeChickenLib", file: "CodeChickenLib-1.21.1-4.6.1.526.jar", desc: "Библиотека для рендеринга моделей." },
+        { name: "Create", file: "create-1.21.1-6.0.10.jar", desc: "Механика, автоматизация и шестерни." },
+        { name: "Create Aeronautics", file: "create-aeronautics-bundled-1.21.1-1.3.0.jar", desc: "Полеты на кораблях из блоков." },
+        { name: "Draconic Evolution", file: "Draconic-Evolution-1.21.1-3.1.4.632.jar", desc: "Мощная энергия и инструменты." },
+        { name: "EasyLogin", file: "easylogin-neoforge-1.21.1-1.0.1.jar", desc: "Система паролей на сервере." },
+        { name: "Hostile Neural Networks", file: "HostileNeuralNetworks-1.21.1-6.4.2.jar", desc: "Симуляция фарма мобов." },
+        { name: "Iron Chests", file: "ironchest-1.21-neoforge-16.0.7.jar", desc: "Огромные железные сундуки." },
+        { name: "Jade", file: "Jade-1.21.1-NeoForge-15.10.5.jar", desc: "Инфо о блоках при наведении." },
+        { name: "JEI", file: "jei-1.21.1-neoforge-19.39.0.368.jar", desc: "Просмотр всех рецептов крафта." },
+        { name: "Just Hammers", file: "just-hammers-neoforge-21.1.4.jar", desc: "Молоты для копания 3х3." },
+        { name: "KubeJS", file: "kubejs-neoforge-2101.7.2-build.368.jar", desc: "Настройка рецептов сервера." },
+        { name: "Lithosphere", file: "lithosphere-1.8.1.jar", desc: "Улучшенная генерация мира." },
+        { name: "Lithostitched", file: "lithostitched-1.7.13-neoforge-21.1.jar", desc: "Оптимизация биомов." },
+        { name: "Mekanism", file: "Mekanism-1.21.1-10.7.19.85.jar", desc: "Сложные технические заводы." },
+        { name: "Mekanism Generators", file: "MekanismGenerators-1.21.1-10.7.19.85.jar", desc: "Энергия для Mekanism." },
+        { name: "Pipez", file: "pipez-neoforge-1.21.1-1.2.31.jar", desc: "Транспортировка ресурсов." },
+        { name: "Placebo", file: "Placebo-1.21.1-9.9.1.jar", desc: "Техническая библиотека." },
+        { name: "ProjectE Int.", file: "ProjectE_Integration-1.21.1-8.3.1.jar", desc: "Связка ProjectE с модами." },
+        { name: "ProjectE", file: "ProjectE-1.21.1-PE1.1.0.jar", desc: "Алхимия и EMC обмен." },
+        { name: "Project Expansion", file: "projectexpansion-1.21.1-1.0.6.jar", desc: "Новый контент для ProjectE." },
+        { name: "Re-Avaritia", file: "Re-Avaritia-neoforge-1.21.1-1.3.9.9-release.jar", desc: "Самые мощные и дорогие крафты." },
+        { name: "Refined Storage", file: "refinedstorage-neoforge-2.0.9.jar", desc: "Цифровое хранение ресурсов." },
+        { name: "Rhino", file: "rhino-2101.2.8-build.91.jar", desc: "Движок для KubeJS." },
+        { name: "Sable", file: "sable-neoforge-1.21.1-2.0.3.jar", desc: "Оптимизация света." },
+        { name: "Tectonic", file: "tectonic-3.0.26-neoforge-21.1.jar", desc: "Эпичные горы и ландшафты." },
+        { name: "Chunk Loaders", file: "chunkloaders-1.2.9-neoforge-mc1.21.jar", desc: "Постоянная загрузка чанков." },
+        { name: "Config Lib", file: "supermartijn642configlib-1.1.8-neoforge-mc1.21.jar", desc: "Библиотека конфигураций." },
+        { name: "Core Lib", file: "supermartijn642corelib-1.1.23a-neoforge-mc1.21.jar", desc: "Библиотека ядра функций." }
     ];
 
-    /* Рендеринг карточек модов */
     function renderMods() {
         const grid = document.getElementById('modGrid');
         mods.forEach(mod => {
@@ -429,7 +419,6 @@
         });
     }
 
-    /* Логика модального окна */
     function openModal(mod) {
         document.getElementById('mTitle').innerText = mod.name;
         document.getElementById('mDesc').innerText = mod.desc;
@@ -439,7 +428,6 @@
 
     function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
 
-    /* Переключение вкладок */
     function openTab(name) {
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -447,7 +435,6 @@
         event.currentTarget.classList.add('active');
     }
 
-    /* Копирование текста */
     function copyText(id, btn) {
         const text = document.getElementById(id).innerText;
         navigator.clipboard.writeText(text);
