@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KaradžićSMP</title>
     <style>
-        /* ИСПРАВЛЕНИЕ СМЕЩЕНИЯ */
         html {
             scrollbar-gutter: stable;
         }
@@ -30,7 +29,6 @@
             letter-spacing: -0.022em;
             -webkit-font-smoothing: antialiased;
             padding-bottom: 100px;
-            /* Принудительный скролл для стабильности ширины */
             overflow-y: scroll;
         }
 
@@ -235,8 +233,6 @@
         <button class="tab-btn" onclick="openTab('contact')">Связь</button>
         <button class="tab-btn" onclick="openTab('donate')">Пожертвование</button>
     </div>
-
-    <!-- ТАБ: ИНСТРУКЦИЯ -->
     <div id="guide" class="tab-content active">
         <div class="apple-card" style="text-align: center; background: linear-gradient(to bottom, #fff, #f9f9f9);">
             <h2 style="font-size: 32px; margin-bottom: 20px;">Готов к игре?</h2>
@@ -256,13 +252,9 @@
             </div>
         </div>
     </div>
-
-    <!-- ТАБ: МОДЫ -->
     <div id="mods" class="tab-content">
         <div class="mods-grid" id="modGrid"></div>
     </div>
-
-    <!-- ТАБ: ПРАВИЛА -->
     <div id="rules" class="tab-content">
         <div class="apple-card">
             <h3 style="margin-bottom: 20px;">Правила сервера</h3>
@@ -271,8 +263,6 @@
             <p style="padding: 15px;"><strong>Технологии:</strong> Не создавайте механизмы, намеренно лагающие сервер.</p>
         </div>
     </div>
-
-    <!-- ТАБ: СВЯЗЬ -->
     <div id="contact" class="tab-content">
         <div class="contact-shelf">
             <a href="https://t.me/lazardraganovic" target="_blank" class="contact-link">
@@ -289,8 +279,6 @@
             </a>
         </div>
     </div>
-
-    <!-- ТАБ: ПОЖЕРТВОВАНИЕ -->
     <div id="donate" class="tab-content">
         <div class="apple-card" style="text-align: center;">
             <h3 style="margin-bottom: 20px;">Пожертвование</h3>
@@ -306,8 +294,6 @@
 <footer>
     &copy; 2026 KaradžićSMP.
 </footer>
-
-<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
     <div class="modal" onclick="event.stopPropagation()">
         <h2 id="mTitle" style="margin-bottom: 15px;"></h2>
